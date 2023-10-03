@@ -1,0 +1,8 @@
+{
+  "packages": [
+    "./content-app",
+    "./header-app",
+    "./shell-app"
+  ],
+  "version": "0.0.0"
+}
