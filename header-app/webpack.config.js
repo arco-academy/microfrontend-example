@@ -53,7 +53,7 @@ module.exports = {
         "./App": "./src/App.js",
       },
       remotes: {
-        "shell-app": "shell@http://localhost:3001/remoteEntry.js",
+        "shell": "shell@http://localhost:3001/remoteEntry.js",
       },
       shared: {
         ...dependencies,

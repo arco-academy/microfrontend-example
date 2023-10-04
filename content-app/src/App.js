@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 
+//? Hook vindo do Microfrontend shell-app
+import useUser from 'shell/useUser';
+
 const product = {
   name: 'Basic Tee 6-Pack',
   price: '$192',
@@ -61,8 +64,19 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+  const addCard = useUser(state => state.addCard)
+
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+  
+  const handleAddToCart = () => {
+    addCard({
+      name: product.name,
+      price: product.price,
+      color: selectedColor.name,
+      size: selectedSize.name
+    })
+  }
 
   return (
     <div className="bg-white">
@@ -164,7 +178,7 @@ export default function Example() {
               </div>
             </div>
 
-            <form className="mt-10">
+            <div className="mt-10">
               {/* Colors */}
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Color</h3>
@@ -264,12 +278,12 @@ export default function Example() {
               </div>
 
               <button
-                type="submit"
+                onClick={handleAddToCart}
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Add to bag
               </button>
-            </form>
+            </div>
           </div>
 
           <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">

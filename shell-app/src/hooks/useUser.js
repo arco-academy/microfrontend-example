@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import { toast } from 'react-toastify';
+
 const INITIAL_STATE = {
   user: {
     name: 'John Doe',
@@ -8,10 +10,16 @@ const INITIAL_STATE = {
   cart: []
 }
 
-const useUser = create((set) => ({
+const useUser = create((set, get) => ({
   ...INITIAL_STATE,
   updateUser: (user) => set({ user }),
-  addCard: (item) => set((state) => ({ cart: [...state.cart] }))
+  addCard: (item) => {
+    const items = get().cart;
+
+    set({ cart: [...items, item]})
+
+    toast.success('Item adicionado ao carrinho!')
+  }
 }))
 
 export default useUser;

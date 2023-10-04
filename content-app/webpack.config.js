@@ -52,6 +52,9 @@ module.exports = {
       exposes:{
         "./App": "./src/App.js",
       },
+      remotes: {
+        "shell": "shell@http://localhost:3001/remoteEntry.js",
+      },
       shared: {
         ...dependencies,
         react: "react",
